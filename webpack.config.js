@@ -35,12 +35,12 @@ const config = {
     rules: [
       {
         enforce: "pre",
-        test: /\.js$/,
+        test: /\.jsx?$/,
         exclude: /node_modules/,
         loader: "eslint-loader"
       },
       {
-        test: /\.js$/,
+        test: /\.jsx?$/,
         loaders: [
           'babel-loader',
         ],
@@ -131,7 +131,7 @@ const config = {
 
   plugins: [
     new webpack.LoaderOptionsPlugin({
-      test: /\.js$/,
+      test: /\.jsx?$/,
       options: {
         eslint: {
           configFile: resolve(__dirname, '.eslintrc'),
@@ -145,6 +145,10 @@ const config = {
     new OpenBrowserPlugin({ url: 'http://localhost:8080' }),
     new webpack.HotModuleReplacementPlugin(),
   ],
+
+  resolve: {
+    extensions: ['.js', '.jsx'],
+  },
 };
 
 module.exports = config;
